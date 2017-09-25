@@ -26,6 +26,24 @@ loadAPIRoutes(app, friendsDBobj);
 HTMLPAGE(app);
 
 //start server
+var mysql = require("mysql");
+
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "cometome4",
+  database: "FriendsDB"
+});
+
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+});
+
+
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
 });
